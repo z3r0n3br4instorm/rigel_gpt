@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Input Example</title>
+</head>
+<body>
+    <h1>Enter Text:</h1>
+    <form method="POST">
+        <input type="text" name="user_input" value="{{ user_input }}" placeholder="Enter text">
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>You entered: {{ user_output }}</h2>
+</body>
+</html>
