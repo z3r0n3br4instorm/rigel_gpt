@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rigel Engine GPT</title>
+</head>
+<style>
+    /* Customize the scrollbar track */
+    ::-webkit-scrollbar {
+      width: 12px; /* Adjust the width as needed */
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #000000; /* Adjust the background color as needed */
+    }
+
+    /* Customize the scrollbar thumb */
+    ::-webkit-scrollbar-thumb {
+      background-color: #7070708c; /* Adjust the color as needed */
+      border-radius: 6px; /* Adjust the radius as needed */
+      border: 3px solid #000000; /* Adjust the border color and size as needed */
+    }
+
+    /* Add glow effect to the thumb */
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #5a5a5a; /* Adjust the color as needed */
+      box-shadow: 0 0 10px #5252525b; /* Adjust the glow color and size as needed */
+    }
+
+        @font-face {
+      font-family: 'SonySketch';
+      src: url('font_default.ttf') format('truetype');
+      font-weight:10 ;
+    }
+    @font-face {
+      font-family: 'Space Grotesk';
+      src: url('SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+      font-weight:10 ;
+    }
+    @media only screen and (max-width: 400px) {
+          button {
+            padding: 100px 100px;
+          }
+        }
+
+    /* Adjust text size for mobile */
+    @media only screen and (max-width: 400px) {
+      h1, h2, p {
+        font-size: 36px;
+      }
+    }
+@keyframes slideU {
+      0% {
+        transform: translateY(0%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(100);
+        opacity: 1;
+      }
+    }
+    body {
+      background-size: cover;
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(30px);
+      margin: 0;
+      padding: 0;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-weight: 100;
+      background-image: url("assets/images/zrn_back.png");
+      background-color: rgba(0, 0, 0, 0.5);
+      background-position: center;
+      background-attachment: fixed;
+      animation: slideU 2s ease;
+      color: rgba(0, 0, 0, 0); /* Adjust the opacity as per your preference */
+      text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.411); 
+    }
+
+    .image-viewer {
+        position: relative;
+        width: 100%;
+        height: auto;
+        }
+
+        .image-viewer img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0 auto;
+        }
+
+    /* Adjust text size for mobile */
+    @media only screen and (max-width: 400px) {
+      h1, h2, p {
+        font-size: 36px;
+      }
+    }
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-gallery img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        cursor: pointer;
+        margin: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+        transform: scale(1.1);
+    }
+    .top-bar {
+      background-color: rgb(0, 0, 0); /* Adjust the background color and transparency as desired */
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .top-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit; /* Inherit the background properties from .top-bar */
+      filter: blur(10px); /* Apply the blur effect to the pseudo-element */
+      z-index: -1;
+    }
+
+
+    /* Add a margin to the content below the top bar */
+    .content {
+      margin-top: 50px; /* Adjust the margin as per your top bar height */
+    }
+
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .logo {
+      height: 40px;
+      margin-right: 40px;
+    }
+    .logo img {
+      margin: -25px 40px;
+      height: 150%;
+    }
+    @keyframes animate1 {
+      0% {
+        left: -100%;
+      }
+      50%,
+      100% {
+        left: 100%;
+      }
+    }
+    /* New Button */
+
+    /* CSS */
+    .button-86 {
+      font-size: 16px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      padding: 13px 20px 13px;
+      outline: 0;
+      border: 1px solid rgba(255, 255, 255, 0.507);
+      cursor: pointer;
+      color :rgb(168, 168, 168);
+      font-family:"Space Grotesk", Arial, sans-serif ;
+      position: relative;
+      background-color: rgba(255, 255, 255, 0);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-86:after {
+      content: "";
+      background-color: #5c5c5c71;
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      top: 7px;
+      left: 7px;
+      transition: 0.2s;
+    }
+
+    .button-86:hover:after {
+      top: 0px;
+      left: 0px;
+    }
+
+    @media (min-width: 768px) {
+      .button-86 {
+        padding: 13px 50px 13px;
+      }
+    }
+
+
+    /* end of button */
+/* Styling the input box */
+input {
+  padding: 10px; /* Adjust the padding to your preference */
+  border: 1px solid #d3d3d3; /* Whitish-grey outline */
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+}
+
+/* Optional: Focus style when the input is selected */
+input:focus {
+  border: 2px solid #0078d4; /* You can choose a different color for focus */
+  outline: none; /* Remove the default focus outline */
+}
+
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+      animation: slideUp 1s ease;
+    }
+    .vertical-line {
+    width: 2px;
+    height: 100px; /* Adjust the height as needed */
+    background-color: rgb(168, 168, 168); /* Change the color if desired */
+    }
+    .button-image {
+      width: 500px; /* Adjust the width as needed */
+      height: 500px; /* Adjust the height as needed */
+      margin-left: 10px; /* Adjust the margin as needed */
+      vertical-align: middle;
+      margin-left: auto;
+    }
+    h2 {
+      text-align: left;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-weight: lighter;
+      margin: 40px 20px;
+      animation: slideUp 1s ease;
+    }
+    h3 {
+      text-align: center;
+      margin: 40px 0;
+      animation: slideUp 1s ease;
+    }
+    p {
+      text-align: center;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-weight: lighter;
+      margin: 40px 20px;
+      animation: slideUp 1s ease;
+    }
+    .line {
+      border: none;
+      border-top: 2px solid rgba(255, 255, 255, 0.404); /* Dark white color */
+    }
+    @media only screen and (max-width: 400px) {
+      button {
+        padding: 100px 100px;
+      }
+    }
+
+    /* Adjust text size for mobile */
+    @media only screen and (max-width: 400px) {
+      h1, h2, p {
+        font-size: 36px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk&family=Space+Mono&display=swap">
+<body>
+    <h1>Rigel Web GPT</h1>
+    <hr class="line">
+    <h1>
+    <form method="POST">
+        <input type="text" name="user_input" value="{{ user_input }}" placeholder="Enter text">
+        <input class="button-86" type="submit" value="Send">
+    </form>
+    </h1>
+    <h3>it may take upto 2 minutes to generate the output, the page will refresh automatically...</h3>
+    <h2>Rigel: {{ user_output }}</h2>
+</body>
+</html>
